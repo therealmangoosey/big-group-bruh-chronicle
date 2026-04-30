@@ -9,8 +9,152 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as WheelRouteImport } from './routes/wheel'
+import { Route as VoiceMeterRouteImport } from './routes/voice-meter'
+import { Route as VocabRouteImport } from './routes/vocab'
+import { Route as UnhingedRouteImport } from './routes/unhinged'
+import { Route as ShipsRouteImport } from './routes/ships'
+import { Route as SearchRouteImport } from './routes/search'
+import { Route as RivalryRouteImport } from './routes/rivalry'
+import { Route as ReplayRouteImport } from './routes/replay'
+import { Route as PatchNotesRouteImport } from './routes/patch-notes'
+import { Route as PairsRouteImport } from './routes/pairs'
+import { Route as NightOwlsRouteImport } from './routes/night-owls'
+import { Route as NameSagaRouteImport } from './routes/name-saga'
+import { Route as MonthlyRouteImport } from './routes/monthly'
+import { Route as MembersRouteImport } from './routes/members'
+import { Route as LoreRouteImport } from './routes/lore'
+import { Route as LeaderboardRouteImport } from './routes/leaderboard'
+import { Route as HeatmapRouteImport } from './routes/heatmap'
+import { Route as HallOfFameRouteImport } from './routes/hall-of-fame'
+import { Route as EmmaHospitalRouteImport } from './routes/emma-hospital'
+import { Route as DramaRouteImport } from './routes/drama'
+import { Route as CurseWallRouteImport } from './routes/curse-wall'
+import { Route as BeefRouteImport } from './routes/beef'
+import { Route as AwardsRouteImport } from './routes/awards'
+import { Route as ActivityRouteImport } from './routes/activity'
 import { Route as IndexRouteImport } from './routes/index'
 
+const WheelRoute = WheelRouteImport.update({
+  id: '/wheel',
+  path: '/wheel',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const VoiceMeterRoute = VoiceMeterRouteImport.update({
+  id: '/voice-meter',
+  path: '/voice-meter',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const VocabRoute = VocabRouteImport.update({
+  id: '/vocab',
+  path: '/vocab',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const UnhingedRoute = UnhingedRouteImport.update({
+  id: '/unhinged',
+  path: '/unhinged',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ShipsRoute = ShipsRouteImport.update({
+  id: '/ships',
+  path: '/ships',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SearchRoute = SearchRouteImport.update({
+  id: '/search',
+  path: '/search',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const RivalryRoute = RivalryRouteImport.update({
+  id: '/rivalry',
+  path: '/rivalry',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ReplayRoute = ReplayRouteImport.update({
+  id: '/replay',
+  path: '/replay',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PatchNotesRoute = PatchNotesRouteImport.update({
+  id: '/patch-notes',
+  path: '/patch-notes',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PairsRoute = PairsRouteImport.update({
+  id: '/pairs',
+  path: '/pairs',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const NightOwlsRoute = NightOwlsRouteImport.update({
+  id: '/night-owls',
+  path: '/night-owls',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const NameSagaRoute = NameSagaRouteImport.update({
+  id: '/name-saga',
+  path: '/name-saga',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MonthlyRoute = MonthlyRouteImport.update({
+  id: '/monthly',
+  path: '/monthly',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MembersRoute = MembersRouteImport.update({
+  id: '/members',
+  path: '/members',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LoreRoute = LoreRouteImport.update({
+  id: '/lore',
+  path: '/lore',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LeaderboardRoute = LeaderboardRouteImport.update({
+  id: '/leaderboard',
+  path: '/leaderboard',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const HeatmapRoute = HeatmapRouteImport.update({
+  id: '/heatmap',
+  path: '/heatmap',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const HallOfFameRoute = HallOfFameRouteImport.update({
+  id: '/hall-of-fame',
+  path: '/hall-of-fame',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const EmmaHospitalRoute = EmmaHospitalRouteImport.update({
+  id: '/emma-hospital',
+  path: '/emma-hospital',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DramaRoute = DramaRouteImport.update({
+  id: '/drama',
+  path: '/drama',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CurseWallRoute = CurseWallRouteImport.update({
+  id: '/curse-wall',
+  path: '/curse-wall',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BeefRoute = BeefRouteImport.update({
+  id: '/beef',
+  path: '/beef',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AwardsRoute = AwardsRouteImport.update({
+  id: '/awards',
+  path: '/awards',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ActivityRoute = ActivityRouteImport.update({
+  id: '/activity',
+  path: '/activity',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
@@ -19,28 +163,368 @@ const IndexRoute = IndexRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/activity': typeof ActivityRoute
+  '/awards': typeof AwardsRoute
+  '/beef': typeof BeefRoute
+  '/curse-wall': typeof CurseWallRoute
+  '/drama': typeof DramaRoute
+  '/emma-hospital': typeof EmmaHospitalRoute
+  '/hall-of-fame': typeof HallOfFameRoute
+  '/heatmap': typeof HeatmapRoute
+  '/leaderboard': typeof LeaderboardRoute
+  '/lore': typeof LoreRoute
+  '/members': typeof MembersRoute
+  '/monthly': typeof MonthlyRoute
+  '/name-saga': typeof NameSagaRoute
+  '/night-owls': typeof NightOwlsRoute
+  '/pairs': typeof PairsRoute
+  '/patch-notes': typeof PatchNotesRoute
+  '/replay': typeof ReplayRoute
+  '/rivalry': typeof RivalryRoute
+  '/search': typeof SearchRoute
+  '/ships': typeof ShipsRoute
+  '/unhinged': typeof UnhingedRoute
+  '/vocab': typeof VocabRoute
+  '/voice-meter': typeof VoiceMeterRoute
+  '/wheel': typeof WheelRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/activity': typeof ActivityRoute
+  '/awards': typeof AwardsRoute
+  '/beef': typeof BeefRoute
+  '/curse-wall': typeof CurseWallRoute
+  '/drama': typeof DramaRoute
+  '/emma-hospital': typeof EmmaHospitalRoute
+  '/hall-of-fame': typeof HallOfFameRoute
+  '/heatmap': typeof HeatmapRoute
+  '/leaderboard': typeof LeaderboardRoute
+  '/lore': typeof LoreRoute
+  '/members': typeof MembersRoute
+  '/monthly': typeof MonthlyRoute
+  '/name-saga': typeof NameSagaRoute
+  '/night-owls': typeof NightOwlsRoute
+  '/pairs': typeof PairsRoute
+  '/patch-notes': typeof PatchNotesRoute
+  '/replay': typeof ReplayRoute
+  '/rivalry': typeof RivalryRoute
+  '/search': typeof SearchRoute
+  '/ships': typeof ShipsRoute
+  '/unhinged': typeof UnhingedRoute
+  '/vocab': typeof VocabRoute
+  '/voice-meter': typeof VoiceMeterRoute
+  '/wheel': typeof WheelRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/activity': typeof ActivityRoute
+  '/awards': typeof AwardsRoute
+  '/beef': typeof BeefRoute
+  '/curse-wall': typeof CurseWallRoute
+  '/drama': typeof DramaRoute
+  '/emma-hospital': typeof EmmaHospitalRoute
+  '/hall-of-fame': typeof HallOfFameRoute
+  '/heatmap': typeof HeatmapRoute
+  '/leaderboard': typeof LeaderboardRoute
+  '/lore': typeof LoreRoute
+  '/members': typeof MembersRoute
+  '/monthly': typeof MonthlyRoute
+  '/name-saga': typeof NameSagaRoute
+  '/night-owls': typeof NightOwlsRoute
+  '/pairs': typeof PairsRoute
+  '/patch-notes': typeof PatchNotesRoute
+  '/replay': typeof ReplayRoute
+  '/rivalry': typeof RivalryRoute
+  '/search': typeof SearchRoute
+  '/ships': typeof ShipsRoute
+  '/unhinged': typeof UnhingedRoute
+  '/vocab': typeof VocabRoute
+  '/voice-meter': typeof VoiceMeterRoute
+  '/wheel': typeof WheelRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/activity'
+    | '/awards'
+    | '/beef'
+    | '/curse-wall'
+    | '/drama'
+    | '/emma-hospital'
+    | '/hall-of-fame'
+    | '/heatmap'
+    | '/leaderboard'
+    | '/lore'
+    | '/members'
+    | '/monthly'
+    | '/name-saga'
+    | '/night-owls'
+    | '/pairs'
+    | '/patch-notes'
+    | '/replay'
+    | '/rivalry'
+    | '/search'
+    | '/ships'
+    | '/unhinged'
+    | '/vocab'
+    | '/voice-meter'
+    | '/wheel'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/activity'
+    | '/awards'
+    | '/beef'
+    | '/curse-wall'
+    | '/drama'
+    | '/emma-hospital'
+    | '/hall-of-fame'
+    | '/heatmap'
+    | '/leaderboard'
+    | '/lore'
+    | '/members'
+    | '/monthly'
+    | '/name-saga'
+    | '/night-owls'
+    | '/pairs'
+    | '/patch-notes'
+    | '/replay'
+    | '/rivalry'
+    | '/search'
+    | '/ships'
+    | '/unhinged'
+    | '/vocab'
+    | '/voice-meter'
+    | '/wheel'
+  id:
+    | '__root__'
+    | '/'
+    | '/activity'
+    | '/awards'
+    | '/beef'
+    | '/curse-wall'
+    | '/drama'
+    | '/emma-hospital'
+    | '/hall-of-fame'
+    | '/heatmap'
+    | '/leaderboard'
+    | '/lore'
+    | '/members'
+    | '/monthly'
+    | '/name-saga'
+    | '/night-owls'
+    | '/pairs'
+    | '/patch-notes'
+    | '/replay'
+    | '/rivalry'
+    | '/search'
+    | '/ships'
+    | '/unhinged'
+    | '/vocab'
+    | '/voice-meter'
+    | '/wheel'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  ActivityRoute: typeof ActivityRoute
+  AwardsRoute: typeof AwardsRoute
+  BeefRoute: typeof BeefRoute
+  CurseWallRoute: typeof CurseWallRoute
+  DramaRoute: typeof DramaRoute
+  EmmaHospitalRoute: typeof EmmaHospitalRoute
+  HallOfFameRoute: typeof HallOfFameRoute
+  HeatmapRoute: typeof HeatmapRoute
+  LeaderboardRoute: typeof LeaderboardRoute
+  LoreRoute: typeof LoreRoute
+  MembersRoute: typeof MembersRoute
+  MonthlyRoute: typeof MonthlyRoute
+  NameSagaRoute: typeof NameSagaRoute
+  NightOwlsRoute: typeof NightOwlsRoute
+  PairsRoute: typeof PairsRoute
+  PatchNotesRoute: typeof PatchNotesRoute
+  ReplayRoute: typeof ReplayRoute
+  RivalryRoute: typeof RivalryRoute
+  SearchRoute: typeof SearchRoute
+  ShipsRoute: typeof ShipsRoute
+  UnhingedRoute: typeof UnhingedRoute
+  VocabRoute: typeof VocabRoute
+  VoiceMeterRoute: typeof VoiceMeterRoute
+  WheelRoute: typeof WheelRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/wheel': {
+      id: '/wheel'
+      path: '/wheel'
+      fullPath: '/wheel'
+      preLoaderRoute: typeof WheelRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/voice-meter': {
+      id: '/voice-meter'
+      path: '/voice-meter'
+      fullPath: '/voice-meter'
+      preLoaderRoute: typeof VoiceMeterRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/vocab': {
+      id: '/vocab'
+      path: '/vocab'
+      fullPath: '/vocab'
+      preLoaderRoute: typeof VocabRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/unhinged': {
+      id: '/unhinged'
+      path: '/unhinged'
+      fullPath: '/unhinged'
+      preLoaderRoute: typeof UnhingedRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/ships': {
+      id: '/ships'
+      path: '/ships'
+      fullPath: '/ships'
+      preLoaderRoute: typeof ShipsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/search': {
+      id: '/search'
+      path: '/search'
+      fullPath: '/search'
+      preLoaderRoute: typeof SearchRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/rivalry': {
+      id: '/rivalry'
+      path: '/rivalry'
+      fullPath: '/rivalry'
+      preLoaderRoute: typeof RivalryRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/replay': {
+      id: '/replay'
+      path: '/replay'
+      fullPath: '/replay'
+      preLoaderRoute: typeof ReplayRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/patch-notes': {
+      id: '/patch-notes'
+      path: '/patch-notes'
+      fullPath: '/patch-notes'
+      preLoaderRoute: typeof PatchNotesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/pairs': {
+      id: '/pairs'
+      path: '/pairs'
+      fullPath: '/pairs'
+      preLoaderRoute: typeof PairsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/night-owls': {
+      id: '/night-owls'
+      path: '/night-owls'
+      fullPath: '/night-owls'
+      preLoaderRoute: typeof NightOwlsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/name-saga': {
+      id: '/name-saga'
+      path: '/name-saga'
+      fullPath: '/name-saga'
+      preLoaderRoute: typeof NameSagaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/monthly': {
+      id: '/monthly'
+      path: '/monthly'
+      fullPath: '/monthly'
+      preLoaderRoute: typeof MonthlyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/members': {
+      id: '/members'
+      path: '/members'
+      fullPath: '/members'
+      preLoaderRoute: typeof MembersRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/lore': {
+      id: '/lore'
+      path: '/lore'
+      fullPath: '/lore'
+      preLoaderRoute: typeof LoreRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/leaderboard': {
+      id: '/leaderboard'
+      path: '/leaderboard'
+      fullPath: '/leaderboard'
+      preLoaderRoute: typeof LeaderboardRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/heatmap': {
+      id: '/heatmap'
+      path: '/heatmap'
+      fullPath: '/heatmap'
+      preLoaderRoute: typeof HeatmapRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/hall-of-fame': {
+      id: '/hall-of-fame'
+      path: '/hall-of-fame'
+      fullPath: '/hall-of-fame'
+      preLoaderRoute: typeof HallOfFameRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/emma-hospital': {
+      id: '/emma-hospital'
+      path: '/emma-hospital'
+      fullPath: '/emma-hospital'
+      preLoaderRoute: typeof EmmaHospitalRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/drama': {
+      id: '/drama'
+      path: '/drama'
+      fullPath: '/drama'
+      preLoaderRoute: typeof DramaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/curse-wall': {
+      id: '/curse-wall'
+      path: '/curse-wall'
+      fullPath: '/curse-wall'
+      preLoaderRoute: typeof CurseWallRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/beef': {
+      id: '/beef'
+      path: '/beef'
+      fullPath: '/beef'
+      preLoaderRoute: typeof BeefRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/awards': {
+      id: '/awards'
+      path: '/awards'
+      fullPath: '/awards'
+      preLoaderRoute: typeof AwardsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/activity': {
+      id: '/activity'
+      path: '/activity'
+      fullPath: '/activity'
+      preLoaderRoute: typeof ActivityRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
@@ -53,6 +537,30 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  ActivityRoute: ActivityRoute,
+  AwardsRoute: AwardsRoute,
+  BeefRoute: BeefRoute,
+  CurseWallRoute: CurseWallRoute,
+  DramaRoute: DramaRoute,
+  EmmaHospitalRoute: EmmaHospitalRoute,
+  HallOfFameRoute: HallOfFameRoute,
+  HeatmapRoute: HeatmapRoute,
+  LeaderboardRoute: LeaderboardRoute,
+  LoreRoute: LoreRoute,
+  MembersRoute: MembersRoute,
+  MonthlyRoute: MonthlyRoute,
+  NameSagaRoute: NameSagaRoute,
+  NightOwlsRoute: NightOwlsRoute,
+  PairsRoute: PairsRoute,
+  PatchNotesRoute: PatchNotesRoute,
+  ReplayRoute: ReplayRoute,
+  RivalryRoute: RivalryRoute,
+  SearchRoute: SearchRoute,
+  ShipsRoute: ShipsRoute,
+  UnhingedRoute: UnhingedRoute,
+  VocabRoute: VocabRoute,
+  VoiceMeterRoute: VoiceMeterRoute,
+  WheelRoute: WheelRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
