@@ -1,7 +1,8 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Window } from "@/components/Window";
 import { stats, members, daily, nameSaga } from "@/lib/dataset";
+import { useEggs } from "@/lib/easter";
 
 export const Route = createFileRoute("/")({
   component: Index,
@@ -32,8 +33,16 @@ function CountUp({ to, suffix = "" }: { to: number; suffix?: string }) {
 }
 
 function StatTile({ label, value, color }: { label: string; value: number; color: string }) {
+  const { trigger } = useEggs();
+  const hoverRef = useRef<number | null>(null);
+  const onEnter = () => {
+    hoverRef.current = window.setTimeout(() => trigger("long-hover"), 4000);
+  };
+  const onLeave = () => {
+    if (hoverRef.current) { window.clearTimeout(hoverRef.current); hoverRef.current = null; }
+  };
   return (
-    <div className="win shimmer" style={{ background: color }}>
+    <div className="win shimmer" style={{ background: color }} onMouseEnter={onEnter} onMouseLeave={onLeave}>
       <div className="win-titlebar"><span>★ stat.dat</span></div>
       <div className="win-body text-center py-3">
         <div className="pixel text-[9px] mb-1" style={{ color: "var(--ink)" }}>{label}</div>
@@ -84,19 +93,19 @@ function Index() {
       <div className="grid md:grid-cols-2 gap-4">
         <Window title="top yappers.txt" variant="cyan" icon="👑">
           <ol className="space-y-2">
-            {top5.map((m, i) => (
-              <li key={m.name} className="flex items-center gap-3">
-                <span className="pixel text-xl w-8" style={{ color: i === 0 ? "var(--hot)" : "var(--ink)" }}>
-                  #{i + 1}
-                </span>
-                <span
-                  className="inline-block w-6 h-6 border-2 border-black"
-                  style={{ background: m.color }}
-                />
-                <Link to="/members" className="font-bold underline grow truncate">{m.name}</Link>
-                <span className="disp text-2xl">{m.messageCount.toLocaleString()}</span>
-              </li>
-            ))}
+            {top5.map((m, i) => {
+              const isLeon = m.name === "Leon";
+              return (
+                <li key={m.name} className="flex items-center gap-3">
+                  <span className="pixel text-xl w-8" style={{ color: i === 0 ? "var(--hot)" : "var(--ink)" }}>
+                    #{i + 1}
+                  </span>
+                  <span className="inline-block w-6 h-6 border-2 border-black" style={{ background: m.color }} />
+                  <Link to="/members" className="font-bold underline grow truncate">{m.name}</Link>
+                  {isLeon ? <LeonCount value={m.messageCount} /> : <span className="disp text-2xl">{m.messageCount.toLocaleString()}</span>}
+                </li>
+              );
+            })}
           </ol>
           <Link to="/leaderboard" className="y2k-btn mt-3 w-full justify-center">see full leaderboard ›</Link>
         </Window>
@@ -156,6 +165,37 @@ function Index() {
           ))}
         </div>
       </Window>
+      {/* invisible pixel egg */}
+      <InvisiblePixel />
     </div>
+  );
+}
+
+function LeonCount({ value }: { value: number }) {
+  const { trigger } = useEggs();
+  const clicks = useRef<number[]>([]);
+  const onClick = () => {
+    const now = Date.now();
+    clicks.current = [...clicks.current.filter((t) => now - t < 1500), now];
+    if (clicks.current.length >= 5) {
+      clicks.current = [];
+      trigger("leon-letter");
+      trigger("rapid-click");
+    }
+  };
+  return <span className="disp text-2xl cursor-pointer select-none" onClick={onClick}>{value.toLocaleString()}</span>;
+}
+
+function InvisiblePixel() {
+  const { trigger } = useEggs();
+  return (
+    <span
+      onClick={() => trigger("pixel")}
+      style={{
+        position: "fixed", bottom: 2, right: 2, width: 1, height: 1,
+        background: "transparent", cursor: "default", zIndex: 50,
+      }}
+      aria-hidden
+    />
   );
 }

@@ -2,6 +2,28 @@ import { createFileRoute } from "@tanstack/react-router";
 import { Window } from "@/components/Window";
 import { Avatar } from "@/components/Avatar";
 import { emmaSaga, fmtDateTime } from "@/lib/dataset";
+import { useEggs } from "@/lib/easter";
+
+function GreatText({ text }: { text: string }) {
+  const { trigger } = useEggs();
+  const parts = text.split(/(\bgreat\b)/gi);
+  return (
+    <>
+      {parts.map((p, i) =>
+        /^great$/i.test(p) ? (
+          <span
+            key={i}
+            onClick={(e) => { e.stopPropagation(); trigger("great-sound"); }}
+            style={{ cursor: "pointer", textDecoration: "underline dotted", textUnderlineOffset: 2 }}
+            title="something here"
+          >{p}</span>
+        ) : (
+          <span key={i}>{p}</span>
+        )
+      )}
+    </>
+  );
+}
 
 export const Route = createFileRoute("/emma-hospital")({
   component: Page,
@@ -43,7 +65,7 @@ function Page() {
                     <b className="opacity-100">{m.author}</b>
                     <span>· {fmtDateTime(m.ts)}</span>
                   </div>
-                  <p className="text-sm">{m.text}</p>
+                  <p className="text-sm"><GreatText text={m.text} /></p>
                 </div>
               </div>
             </li>

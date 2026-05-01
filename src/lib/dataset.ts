@@ -78,7 +78,7 @@ export type NameSaga = Array<{
   ts: number; date: string; by: string; from: string; to: string;
 }>;
 
-export type Quote = { id?: number; ts: number; date?: string; author: string; text: string; isMedia?: boolean; isDeleted?: boolean; hour?: number };
+export type Quote = { id?: number; ts: number; date?: string; author: string; text: string; isMedia?: boolean; isDeleted?: boolean; isSystem?: boolean; hour?: number };
 
 export type Hof = { longest: Quote[]; shouty: Quote[]; cursed: Quote[] };
 
