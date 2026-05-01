@@ -93,19 +93,19 @@ function Index() {
       <div className="grid md:grid-cols-2 gap-4">
         <Window title="top yappers.txt" variant="cyan" icon="👑">
           <ol className="space-y-2">
-            {top5.map((m, i) => (
-              <li key={m.name} className="flex items-center gap-3">
-                <span className="pixel text-xl w-8" style={{ color: i === 0 ? "var(--hot)" : "var(--ink)" }}>
-                  #{i + 1}
-                </span>
-                <span
-                  className="inline-block w-6 h-6 border-2 border-black"
-                  style={{ background: m.color }}
-                />
-                <Link to="/members" className="font-bold underline grow truncate">{m.name}</Link>
-                <span className="disp text-2xl">{m.messageCount.toLocaleString()}</span>
-              </li>
-            ))}
+            {top5.map((m, i) => {
+              const isLeon = m.name === "Leon";
+              return (
+                <li key={m.name} className="flex items-center gap-3">
+                  <span className="pixel text-xl w-8" style={{ color: i === 0 ? "var(--hot)" : "var(--ink)" }}>
+                    #{i + 1}
+                  </span>
+                  <span className="inline-block w-6 h-6 border-2 border-black" style={{ background: m.color }} />
+                  <Link to="/members" className="font-bold underline grow truncate">{m.name}</Link>
+                  {isLeon ? <LeonCount value={m.messageCount} /> : <span className="disp text-2xl">{m.messageCount.toLocaleString()}</span>}
+                </li>
+              );
+            })}
           </ol>
           <Link to="/leaderboard" className="y2k-btn mt-3 w-full justify-center">see full leaderboard ›</Link>
         </Window>
