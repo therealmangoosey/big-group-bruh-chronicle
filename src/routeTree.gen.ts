@@ -9,32 +9,47 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as WhoSaidItRouteImport } from './routes/who-said-it'
 import { Route as WheelRouteImport } from './routes/wheel'
 import { Route as VoiceMeterRouteImport } from './routes/voice-meter'
 import { Route as VocabRouteImport } from './routes/vocab'
+import { Route as VaultRouteImport } from './routes/vault'
 import { Route as UnhingedRouteImport } from './routes/unhinged'
+import { Route as StormRouteImport } from './routes/storm'
+import { Route as StartersRouteImport } from './routes/starters'
+import { Route as SpotlightRouteImport } from './routes/spotlight'
+import { Route as SleepIndexRouteImport } from './routes/sleep-index'
 import { Route as ShipsRouteImport } from './routes/ships'
 import { Route as SearchRouteImport } from './routes/search'
 import { Route as RivalryRouteImport } from './routes/rivalry'
 import { Route as ReplayRouteImport } from './routes/replay'
+import { Route as QuietDaysRouteImport } from './routes/quiet-days'
 import { Route as PatchNotesRouteImport } from './routes/patch-notes'
 import { Route as PairsRouteImport } from './routes/pairs'
 import { Route as NightOwlsRouteImport } from './routes/night-owls'
 import { Route as NameSagaRouteImport } from './routes/name-saga'
+import { Route as MoodRouteImport } from './routes/mood'
 import { Route as MonthlyRouteImport } from './routes/monthly'
 import { Route as MembersRouteImport } from './routes/members'
 import { Route as LoreRouteImport } from './routes/lore'
 import { Route as LeaderboardRouteImport } from './routes/leaderboard'
+import { Route as HotWordsRouteImport } from './routes/hot-words'
 import { Route as HeatmapRouteImport } from './routes/heatmap'
 import { Route as HallOfFameRouteImport } from './routes/hall-of-fame'
 import { Route as EmmaHospitalRouteImport } from './routes/emma-hospital'
 import { Route as DramaRouteImport } from './routes/drama'
 import { Route as CurseWallRouteImport } from './routes/curse-wall'
+import { Route as ConfessionRouteImport } from './routes/confession'
 import { Route as BeefRouteImport } from './routes/beef'
 import { Route as AwardsRouteImport } from './routes/awards'
 import { Route as ActivityRouteImport } from './routes/activity'
 import { Route as IndexRouteImport } from './routes/index'
 
+const WhoSaidItRoute = WhoSaidItRouteImport.update({
+  id: '/who-said-it',
+  path: '/who-said-it',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const WheelRoute = WheelRouteImport.update({
   id: '/wheel',
   path: '/wheel',
@@ -50,9 +65,34 @@ const VocabRoute = VocabRouteImport.update({
   path: '/vocab',
   getParentRoute: () => rootRouteImport,
 } as any)
+const VaultRoute = VaultRouteImport.update({
+  id: '/vault',
+  path: '/vault',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const UnhingedRoute = UnhingedRouteImport.update({
   id: '/unhinged',
   path: '/unhinged',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const StormRoute = StormRouteImport.update({
+  id: '/storm',
+  path: '/storm',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const StartersRoute = StartersRouteImport.update({
+  id: '/starters',
+  path: '/starters',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SpotlightRoute = SpotlightRouteImport.update({
+  id: '/spotlight',
+  path: '/spotlight',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SleepIndexRoute = SleepIndexRouteImport.update({
+  id: '/sleep-index',
+  path: '/sleep-index',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ShipsRoute = ShipsRouteImport.update({
@@ -75,6 +115,11 @@ const ReplayRoute = ReplayRouteImport.update({
   path: '/replay',
   getParentRoute: () => rootRouteImport,
 } as any)
+const QuietDaysRoute = QuietDaysRouteImport.update({
+  id: '/quiet-days',
+  path: '/quiet-days',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const PatchNotesRoute = PatchNotesRouteImport.update({
   id: '/patch-notes',
   path: '/patch-notes',
@@ -95,6 +140,11 @@ const NameSagaRoute = NameSagaRouteImport.update({
   path: '/name-saga',
   getParentRoute: () => rootRouteImport,
 } as any)
+const MoodRoute = MoodRouteImport.update({
+  id: '/mood',
+  path: '/mood',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const MonthlyRoute = MonthlyRouteImport.update({
   id: '/monthly',
   path: '/monthly',
@@ -113,6 +163,11 @@ const LoreRoute = LoreRouteImport.update({
 const LeaderboardRoute = LeaderboardRouteImport.update({
   id: '/leaderboard',
   path: '/leaderboard',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const HotWordsRoute = HotWordsRouteImport.update({
+  id: '/hot-words',
+  path: '/hot-words',
   getParentRoute: () => rootRouteImport,
 } as any)
 const HeatmapRoute = HeatmapRouteImport.update({
@@ -138,6 +193,11 @@ const DramaRoute = DramaRouteImport.update({
 const CurseWallRoute = CurseWallRouteImport.update({
   id: '/curse-wall',
   path: '/curse-wall',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ConfessionRoute = ConfessionRouteImport.update({
+  id: '/confession',
+  path: '/confession',
   getParentRoute: () => rootRouteImport,
 } as any)
 const BeefRoute = BeefRouteImport.update({
@@ -166,54 +226,74 @@ export interface FileRoutesByFullPath {
   '/activity': typeof ActivityRoute
   '/awards': typeof AwardsRoute
   '/beef': typeof BeefRoute
+  '/confession': typeof ConfessionRoute
   '/curse-wall': typeof CurseWallRoute
   '/drama': typeof DramaRoute
   '/emma-hospital': typeof EmmaHospitalRoute
   '/hall-of-fame': typeof HallOfFameRoute
   '/heatmap': typeof HeatmapRoute
+  '/hot-words': typeof HotWordsRoute
   '/leaderboard': typeof LeaderboardRoute
   '/lore': typeof LoreRoute
   '/members': typeof MembersRoute
   '/monthly': typeof MonthlyRoute
+  '/mood': typeof MoodRoute
   '/name-saga': typeof NameSagaRoute
   '/night-owls': typeof NightOwlsRoute
   '/pairs': typeof PairsRoute
   '/patch-notes': typeof PatchNotesRoute
+  '/quiet-days': typeof QuietDaysRoute
   '/replay': typeof ReplayRoute
   '/rivalry': typeof RivalryRoute
   '/search': typeof SearchRoute
   '/ships': typeof ShipsRoute
+  '/sleep-index': typeof SleepIndexRoute
+  '/spotlight': typeof SpotlightRoute
+  '/starters': typeof StartersRoute
+  '/storm': typeof StormRoute
   '/unhinged': typeof UnhingedRoute
+  '/vault': typeof VaultRoute
   '/vocab': typeof VocabRoute
   '/voice-meter': typeof VoiceMeterRoute
   '/wheel': typeof WheelRoute
+  '/who-said-it': typeof WhoSaidItRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/activity': typeof ActivityRoute
   '/awards': typeof AwardsRoute
   '/beef': typeof BeefRoute
+  '/confession': typeof ConfessionRoute
   '/curse-wall': typeof CurseWallRoute
   '/drama': typeof DramaRoute
   '/emma-hospital': typeof EmmaHospitalRoute
   '/hall-of-fame': typeof HallOfFameRoute
   '/heatmap': typeof HeatmapRoute
+  '/hot-words': typeof HotWordsRoute
   '/leaderboard': typeof LeaderboardRoute
   '/lore': typeof LoreRoute
   '/members': typeof MembersRoute
   '/monthly': typeof MonthlyRoute
+  '/mood': typeof MoodRoute
   '/name-saga': typeof NameSagaRoute
   '/night-owls': typeof NightOwlsRoute
   '/pairs': typeof PairsRoute
   '/patch-notes': typeof PatchNotesRoute
+  '/quiet-days': typeof QuietDaysRoute
   '/replay': typeof ReplayRoute
   '/rivalry': typeof RivalryRoute
   '/search': typeof SearchRoute
   '/ships': typeof ShipsRoute
+  '/sleep-index': typeof SleepIndexRoute
+  '/spotlight': typeof SpotlightRoute
+  '/starters': typeof StartersRoute
+  '/storm': typeof StormRoute
   '/unhinged': typeof UnhingedRoute
+  '/vault': typeof VaultRoute
   '/vocab': typeof VocabRoute
   '/voice-meter': typeof VoiceMeterRoute
   '/wheel': typeof WheelRoute
+  '/who-said-it': typeof WhoSaidItRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -221,27 +301,37 @@ export interface FileRoutesById {
   '/activity': typeof ActivityRoute
   '/awards': typeof AwardsRoute
   '/beef': typeof BeefRoute
+  '/confession': typeof ConfessionRoute
   '/curse-wall': typeof CurseWallRoute
   '/drama': typeof DramaRoute
   '/emma-hospital': typeof EmmaHospitalRoute
   '/hall-of-fame': typeof HallOfFameRoute
   '/heatmap': typeof HeatmapRoute
+  '/hot-words': typeof HotWordsRoute
   '/leaderboard': typeof LeaderboardRoute
   '/lore': typeof LoreRoute
   '/members': typeof MembersRoute
   '/monthly': typeof MonthlyRoute
+  '/mood': typeof MoodRoute
   '/name-saga': typeof NameSagaRoute
   '/night-owls': typeof NightOwlsRoute
   '/pairs': typeof PairsRoute
   '/patch-notes': typeof PatchNotesRoute
+  '/quiet-days': typeof QuietDaysRoute
   '/replay': typeof ReplayRoute
   '/rivalry': typeof RivalryRoute
   '/search': typeof SearchRoute
   '/ships': typeof ShipsRoute
+  '/sleep-index': typeof SleepIndexRoute
+  '/spotlight': typeof SpotlightRoute
+  '/starters': typeof StartersRoute
+  '/storm': typeof StormRoute
   '/unhinged': typeof UnhingedRoute
+  '/vault': typeof VaultRoute
   '/vocab': typeof VocabRoute
   '/voice-meter': typeof VoiceMeterRoute
   '/wheel': typeof WheelRoute
+  '/who-said-it': typeof WhoSaidItRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -250,81 +340,111 @@ export interface FileRouteTypes {
     | '/activity'
     | '/awards'
     | '/beef'
+    | '/confession'
     | '/curse-wall'
     | '/drama'
     | '/emma-hospital'
     | '/hall-of-fame'
     | '/heatmap'
+    | '/hot-words'
     | '/leaderboard'
     | '/lore'
     | '/members'
     | '/monthly'
+    | '/mood'
     | '/name-saga'
     | '/night-owls'
     | '/pairs'
     | '/patch-notes'
+    | '/quiet-days'
     | '/replay'
     | '/rivalry'
     | '/search'
     | '/ships'
+    | '/sleep-index'
+    | '/spotlight'
+    | '/starters'
+    | '/storm'
     | '/unhinged'
+    | '/vault'
     | '/vocab'
     | '/voice-meter'
     | '/wheel'
+    | '/who-said-it'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
     | '/activity'
     | '/awards'
     | '/beef'
+    | '/confession'
     | '/curse-wall'
     | '/drama'
     | '/emma-hospital'
     | '/hall-of-fame'
     | '/heatmap'
+    | '/hot-words'
     | '/leaderboard'
     | '/lore'
     | '/members'
     | '/monthly'
+    | '/mood'
     | '/name-saga'
     | '/night-owls'
     | '/pairs'
     | '/patch-notes'
+    | '/quiet-days'
     | '/replay'
     | '/rivalry'
     | '/search'
     | '/ships'
+    | '/sleep-index'
+    | '/spotlight'
+    | '/starters'
+    | '/storm'
     | '/unhinged'
+    | '/vault'
     | '/vocab'
     | '/voice-meter'
     | '/wheel'
+    | '/who-said-it'
   id:
     | '__root__'
     | '/'
     | '/activity'
     | '/awards'
     | '/beef'
+    | '/confession'
     | '/curse-wall'
     | '/drama'
     | '/emma-hospital'
     | '/hall-of-fame'
     | '/heatmap'
+    | '/hot-words'
     | '/leaderboard'
     | '/lore'
     | '/members'
     | '/monthly'
+    | '/mood'
     | '/name-saga'
     | '/night-owls'
     | '/pairs'
     | '/patch-notes'
+    | '/quiet-days'
     | '/replay'
     | '/rivalry'
     | '/search'
     | '/ships'
+    | '/sleep-index'
+    | '/spotlight'
+    | '/starters'
+    | '/storm'
     | '/unhinged'
+    | '/vault'
     | '/vocab'
     | '/voice-meter'
     | '/wheel'
+    | '/who-said-it'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -332,31 +452,48 @@ export interface RootRouteChildren {
   ActivityRoute: typeof ActivityRoute
   AwardsRoute: typeof AwardsRoute
   BeefRoute: typeof BeefRoute
+  ConfessionRoute: typeof ConfessionRoute
   CurseWallRoute: typeof CurseWallRoute
   DramaRoute: typeof DramaRoute
   EmmaHospitalRoute: typeof EmmaHospitalRoute
   HallOfFameRoute: typeof HallOfFameRoute
   HeatmapRoute: typeof HeatmapRoute
+  HotWordsRoute: typeof HotWordsRoute
   LeaderboardRoute: typeof LeaderboardRoute
   LoreRoute: typeof LoreRoute
   MembersRoute: typeof MembersRoute
   MonthlyRoute: typeof MonthlyRoute
+  MoodRoute: typeof MoodRoute
   NameSagaRoute: typeof NameSagaRoute
   NightOwlsRoute: typeof NightOwlsRoute
   PairsRoute: typeof PairsRoute
   PatchNotesRoute: typeof PatchNotesRoute
+  QuietDaysRoute: typeof QuietDaysRoute
   ReplayRoute: typeof ReplayRoute
   RivalryRoute: typeof RivalryRoute
   SearchRoute: typeof SearchRoute
   ShipsRoute: typeof ShipsRoute
+  SleepIndexRoute: typeof SleepIndexRoute
+  SpotlightRoute: typeof SpotlightRoute
+  StartersRoute: typeof StartersRoute
+  StormRoute: typeof StormRoute
   UnhingedRoute: typeof UnhingedRoute
+  VaultRoute: typeof VaultRoute
   VocabRoute: typeof VocabRoute
   VoiceMeterRoute: typeof VoiceMeterRoute
   WheelRoute: typeof WheelRoute
+  WhoSaidItRoute: typeof WhoSaidItRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/who-said-it': {
+      id: '/who-said-it'
+      path: '/who-said-it'
+      fullPath: '/who-said-it'
+      preLoaderRoute: typeof WhoSaidItRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/wheel': {
       id: '/wheel'
       path: '/wheel'
@@ -378,11 +515,46 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof VocabRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/vault': {
+      id: '/vault'
+      path: '/vault'
+      fullPath: '/vault'
+      preLoaderRoute: typeof VaultRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/unhinged': {
       id: '/unhinged'
       path: '/unhinged'
       fullPath: '/unhinged'
       preLoaderRoute: typeof UnhingedRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/storm': {
+      id: '/storm'
+      path: '/storm'
+      fullPath: '/storm'
+      preLoaderRoute: typeof StormRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/starters': {
+      id: '/starters'
+      path: '/starters'
+      fullPath: '/starters'
+      preLoaderRoute: typeof StartersRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/spotlight': {
+      id: '/spotlight'
+      path: '/spotlight'
+      fullPath: '/spotlight'
+      preLoaderRoute: typeof SpotlightRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/sleep-index': {
+      id: '/sleep-index'
+      path: '/sleep-index'
+      fullPath: '/sleep-index'
+      preLoaderRoute: typeof SleepIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/ships': {
@@ -413,6 +585,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ReplayRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/quiet-days': {
+      id: '/quiet-days'
+      path: '/quiet-days'
+      fullPath: '/quiet-days'
+      preLoaderRoute: typeof QuietDaysRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/patch-notes': {
       id: '/patch-notes'
       path: '/patch-notes'
@@ -441,6 +620,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof NameSagaRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/mood': {
+      id: '/mood'
+      path: '/mood'
+      fullPath: '/mood'
+      preLoaderRoute: typeof MoodRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/monthly': {
       id: '/monthly'
       path: '/monthly'
@@ -467,6 +653,13 @@ declare module '@tanstack/react-router' {
       path: '/leaderboard'
       fullPath: '/leaderboard'
       preLoaderRoute: typeof LeaderboardRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/hot-words': {
+      id: '/hot-words'
+      path: '/hot-words'
+      fullPath: '/hot-words'
+      preLoaderRoute: typeof HotWordsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/heatmap': {
@@ -502,6 +695,13 @@ declare module '@tanstack/react-router' {
       path: '/curse-wall'
       fullPath: '/curse-wall'
       preLoaderRoute: typeof CurseWallRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/confession': {
+      id: '/confession'
+      path: '/confession'
+      fullPath: '/confession'
+      preLoaderRoute: typeof ConfessionRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/beef': {
@@ -540,27 +740,37 @@ const rootRouteChildren: RootRouteChildren = {
   ActivityRoute: ActivityRoute,
   AwardsRoute: AwardsRoute,
   BeefRoute: BeefRoute,
+  ConfessionRoute: ConfessionRoute,
   CurseWallRoute: CurseWallRoute,
   DramaRoute: DramaRoute,
   EmmaHospitalRoute: EmmaHospitalRoute,
   HallOfFameRoute: HallOfFameRoute,
   HeatmapRoute: HeatmapRoute,
+  HotWordsRoute: HotWordsRoute,
   LeaderboardRoute: LeaderboardRoute,
   LoreRoute: LoreRoute,
   MembersRoute: MembersRoute,
   MonthlyRoute: MonthlyRoute,
+  MoodRoute: MoodRoute,
   NameSagaRoute: NameSagaRoute,
   NightOwlsRoute: NightOwlsRoute,
   PairsRoute: PairsRoute,
   PatchNotesRoute: PatchNotesRoute,
+  QuietDaysRoute: QuietDaysRoute,
   ReplayRoute: ReplayRoute,
   RivalryRoute: RivalryRoute,
   SearchRoute: SearchRoute,
   ShipsRoute: ShipsRoute,
+  SleepIndexRoute: SleepIndexRoute,
+  SpotlightRoute: SpotlightRoute,
+  StartersRoute: StartersRoute,
+  StormRoute: StormRoute,
   UnhingedRoute: UnhingedRoute,
+  VaultRoute: VaultRoute,
   VocabRoute: VocabRoute,
   VoiceMeterRoute: VoiceMeterRoute,
   WheelRoute: WheelRoute,
+  WhoSaidItRoute: WhoSaidItRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
