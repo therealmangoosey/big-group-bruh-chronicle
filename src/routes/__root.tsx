@@ -174,7 +174,7 @@ function Footer() {
 
 function RootComponent() {
   return (
-    <>
+    <EasterEggProvider>
       <TopBar />
       <div className="page grid gap-4" style={{ gridTemplateColumns: "minmax(0,1fr)" }}>
         <div className="grid gap-4 md:grid-cols-[200px_minmax(0,1fr)] mt-4">
@@ -183,6 +183,6 @@ function RootComponent() {
         </div>
       </div>
       <Footer />
-    </>
+    </EasterEggProvider>
   );
 }
