@@ -165,6 +165,37 @@ function Index() {
           ))}
         </div>
       </Window>
+      {/* invisible pixel egg */}
+      <InvisiblePixel />
     </div>
+  );
+}
+
+function LeonCount({ value }: { value: number }) {
+  const { trigger } = useEggs();
+  const clicks = useRef<number[]>([]);
+  const onClick = () => {
+    const now = Date.now();
+    clicks.current = [...clicks.current.filter((t) => now - t < 1500), now];
+    if (clicks.current.length >= 5) {
+      clicks.current = [];
+      trigger("leon-letter");
+      trigger("rapid-click");
+    }
+  };
+  return <span className="disp text-2xl cursor-pointer select-none" onClick={onClick}>{value.toLocaleString()}</span>;
+}
+
+function InvisiblePixel() {
+  const { trigger } = useEggs();
+  return (
+    <span
+      onClick={() => trigger("pixel")}
+      style={{
+        position: "fixed", bottom: 2, right: 2, width: 1, height: 1,
+        background: "transparent", cursor: "default", zIndex: 50,
+      }}
+      aria-hidden
+    />
   );
 }
