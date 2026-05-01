@@ -20,6 +20,7 @@ import { Route as StartersRouteImport } from './routes/starters'
 import { Route as SpotlightRouteImport } from './routes/spotlight'
 import { Route as SleepIndexRouteImport } from './routes/sleep-index'
 import { Route as ShipsRouteImport } from './routes/ships'
+import { Route as SecretFinalRouteImport } from './routes/secret-final'
 import { Route as SearchRouteImport } from './routes/search'
 import { Route as RivalryRouteImport } from './routes/rivalry'
 import { Route as ReplayRouteImport } from './routes/replay'
@@ -37,6 +38,7 @@ import { Route as HotWordsRouteImport } from './routes/hot-words'
 import { Route as HeatmapRouteImport } from './routes/heatmap'
 import { Route as HallOfFameRouteImport } from './routes/hall-of-fame'
 import { Route as EmmaHospitalRouteImport } from './routes/emma-hospital'
+import { Route as EasterEggsRouteImport } from './routes/easter-eggs'
 import { Route as DramaRouteImport } from './routes/drama'
 import { Route as CurseWallRouteImport } from './routes/curse-wall'
 import { Route as ConfessionRouteImport } from './routes/confession'
@@ -98,6 +100,11 @@ const SleepIndexRoute = SleepIndexRouteImport.update({
 const ShipsRoute = ShipsRouteImport.update({
   id: '/ships',
   path: '/ships',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SecretFinalRoute = SecretFinalRouteImport.update({
+  id: '/secret-final',
+  path: '/secret-final',
   getParentRoute: () => rootRouteImport,
 } as any)
 const SearchRoute = SearchRouteImport.update({
@@ -185,6 +192,11 @@ const EmmaHospitalRoute = EmmaHospitalRouteImport.update({
   path: '/emma-hospital',
   getParentRoute: () => rootRouteImport,
 } as any)
+const EasterEggsRoute = EasterEggsRouteImport.update({
+  id: '/easter-eggs',
+  path: '/easter-eggs',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const DramaRoute = DramaRouteImport.update({
   id: '/drama',
   path: '/drama',
@@ -229,6 +241,7 @@ export interface FileRoutesByFullPath {
   '/confession': typeof ConfessionRoute
   '/curse-wall': typeof CurseWallRoute
   '/drama': typeof DramaRoute
+  '/easter-eggs': typeof EasterEggsRoute
   '/emma-hospital': typeof EmmaHospitalRoute
   '/hall-of-fame': typeof HallOfFameRoute
   '/heatmap': typeof HeatmapRoute
@@ -246,6 +259,7 @@ export interface FileRoutesByFullPath {
   '/replay': typeof ReplayRoute
   '/rivalry': typeof RivalryRoute
   '/search': typeof SearchRoute
+  '/secret-final': typeof SecretFinalRoute
   '/ships': typeof ShipsRoute
   '/sleep-index': typeof SleepIndexRoute
   '/spotlight': typeof SpotlightRoute
@@ -266,6 +280,7 @@ export interface FileRoutesByTo {
   '/confession': typeof ConfessionRoute
   '/curse-wall': typeof CurseWallRoute
   '/drama': typeof DramaRoute
+  '/easter-eggs': typeof EasterEggsRoute
   '/emma-hospital': typeof EmmaHospitalRoute
   '/hall-of-fame': typeof HallOfFameRoute
   '/heatmap': typeof HeatmapRoute
@@ -283,6 +298,7 @@ export interface FileRoutesByTo {
   '/replay': typeof ReplayRoute
   '/rivalry': typeof RivalryRoute
   '/search': typeof SearchRoute
+  '/secret-final': typeof SecretFinalRoute
   '/ships': typeof ShipsRoute
   '/sleep-index': typeof SleepIndexRoute
   '/spotlight': typeof SpotlightRoute
@@ -304,6 +320,7 @@ export interface FileRoutesById {
   '/confession': typeof ConfessionRoute
   '/curse-wall': typeof CurseWallRoute
   '/drama': typeof DramaRoute
+  '/easter-eggs': typeof EasterEggsRoute
   '/emma-hospital': typeof EmmaHospitalRoute
   '/hall-of-fame': typeof HallOfFameRoute
   '/heatmap': typeof HeatmapRoute
@@ -321,6 +338,7 @@ export interface FileRoutesById {
   '/replay': typeof ReplayRoute
   '/rivalry': typeof RivalryRoute
   '/search': typeof SearchRoute
+  '/secret-final': typeof SecretFinalRoute
   '/ships': typeof ShipsRoute
   '/sleep-index': typeof SleepIndexRoute
   '/spotlight': typeof SpotlightRoute
@@ -343,6 +361,7 @@ export interface FileRouteTypes {
     | '/confession'
     | '/curse-wall'
     | '/drama'
+    | '/easter-eggs'
     | '/emma-hospital'
     | '/hall-of-fame'
     | '/heatmap'
@@ -360,6 +379,7 @@ export interface FileRouteTypes {
     | '/replay'
     | '/rivalry'
     | '/search'
+    | '/secret-final'
     | '/ships'
     | '/sleep-index'
     | '/spotlight'
@@ -380,6 +400,7 @@ export interface FileRouteTypes {
     | '/confession'
     | '/curse-wall'
     | '/drama'
+    | '/easter-eggs'
     | '/emma-hospital'
     | '/hall-of-fame'
     | '/heatmap'
@@ -397,6 +418,7 @@ export interface FileRouteTypes {
     | '/replay'
     | '/rivalry'
     | '/search'
+    | '/secret-final'
     | '/ships'
     | '/sleep-index'
     | '/spotlight'
@@ -417,6 +439,7 @@ export interface FileRouteTypes {
     | '/confession'
     | '/curse-wall'
     | '/drama'
+    | '/easter-eggs'
     | '/emma-hospital'
     | '/hall-of-fame'
     | '/heatmap'
@@ -434,6 +457,7 @@ export interface FileRouteTypes {
     | '/replay'
     | '/rivalry'
     | '/search'
+    | '/secret-final'
     | '/ships'
     | '/sleep-index'
     | '/spotlight'
@@ -455,6 +479,7 @@ export interface RootRouteChildren {
   ConfessionRoute: typeof ConfessionRoute
   CurseWallRoute: typeof CurseWallRoute
   DramaRoute: typeof DramaRoute
+  EasterEggsRoute: typeof EasterEggsRoute
   EmmaHospitalRoute: typeof EmmaHospitalRoute
   HallOfFameRoute: typeof HallOfFameRoute
   HeatmapRoute: typeof HeatmapRoute
@@ -472,6 +497,7 @@ export interface RootRouteChildren {
   ReplayRoute: typeof ReplayRoute
   RivalryRoute: typeof RivalryRoute
   SearchRoute: typeof SearchRoute
+  SecretFinalRoute: typeof SecretFinalRoute
   ShipsRoute: typeof ShipsRoute
   SleepIndexRoute: typeof SleepIndexRoute
   SpotlightRoute: typeof SpotlightRoute
@@ -562,6 +588,13 @@ declare module '@tanstack/react-router' {
       path: '/ships'
       fullPath: '/ships'
       preLoaderRoute: typeof ShipsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/secret-final': {
+      id: '/secret-final'
+      path: '/secret-final'
+      fullPath: '/secret-final'
+      preLoaderRoute: typeof SecretFinalRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/search': {
@@ -683,6 +716,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof EmmaHospitalRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/easter-eggs': {
+      id: '/easter-eggs'
+      path: '/easter-eggs'
+      fullPath: '/easter-eggs'
+      preLoaderRoute: typeof EasterEggsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/drama': {
       id: '/drama'
       path: '/drama'
@@ -743,6 +783,7 @@ const rootRouteChildren: RootRouteChildren = {
   ConfessionRoute: ConfessionRoute,
   CurseWallRoute: CurseWallRoute,
   DramaRoute: DramaRoute,
+  EasterEggsRoute: EasterEggsRoute,
   EmmaHospitalRoute: EmmaHospitalRoute,
   HallOfFameRoute: HallOfFameRoute,
   HeatmapRoute: HeatmapRoute,
@@ -760,6 +801,7 @@ const rootRouteChildren: RootRouteChildren = {
   ReplayRoute: ReplayRoute,
   RivalryRoute: RivalryRoute,
   SearchRoute: SearchRoute,
+  SecretFinalRoute: SecretFinalRoute,
   ShipsRoute: ShipsRoute,
   SleepIndexRoute: SleepIndexRoute,
   SpotlightRoute: SpotlightRoute,

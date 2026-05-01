@@ -1,4 +1,5 @@
 import { Outlet, Link, createRootRoute, HeadContent, Scripts } from "@tanstack/react-router";
+import { EasterEggProvider } from "@/lib/easter";
 
 import appCss from "../styles.css?url";
 
@@ -26,6 +27,17 @@ const NAV: Array<{ to: string; label: string }> = [
   { to: "/search", label: "Search" },
   { to: "/wheel", label: "Wheel of Chaos" },
   { to: "/rivalry", label: "Rivalry" },
+  { to: "/storm", label: "Storm Radar" },
+  { to: "/confession", label: "Confession Booth" },
+  { to: "/who-said-it", label: "Who Said It?" },
+  { to: "/vault", label: "Deleted Vault" },
+  { to: "/mood", label: "Mood Timeline" },
+  { to: "/spotlight", label: "Spotlight Reel" },
+  { to: "/sleep-index", label: "Sleep Index" },
+  { to: "/starters", label: "Starters" },
+  { to: "/hot-words", label: "Hot Words" },
+  { to: "/quiet-days", label: "Quiet Days" },
+  { to: "/easter-eggs", label: "🥚 Egg Hints" },
   { to: "/lore", label: "AI System Lore" },
   { to: "/patch-notes", label: "Patch Notes" },
 ];
