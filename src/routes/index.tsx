@@ -1,7 +1,8 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Window } from "@/components/Window";
 import { stats, members, daily, nameSaga } from "@/lib/dataset";
+import { useEggs } from "@/lib/easter";
 
 export const Route = createFileRoute("/")({
   component: Index,
@@ -32,8 +33,16 @@ function CountUp({ to, suffix = "" }: { to: number; suffix?: string }) {
 }
 
 function StatTile({ label, value, color }: { label: string; value: number; color: string }) {
+  const { trigger } = useEggs();
+  const hoverRef = useRef<number | null>(null);
+  const onEnter = () => {
+    hoverRef.current = window.setTimeout(() => trigger("long-hover"), 4000);
+  };
+  const onLeave = () => {
+    if (hoverRef.current) { window.clearTimeout(hoverRef.current); hoverRef.current = null; }
+  };
   return (
-    <div className="win shimmer" style={{ background: color }}>
+    <div className="win shimmer" style={{ background: color }} onMouseEnter={onEnter} onMouseLeave={onLeave}>
       <div className="win-titlebar"><span>★ stat.dat</span></div>
       <div className="win-body text-center py-3">
         <div className="pixel text-[9px] mb-1" style={{ color: "var(--ink)" }}>{label}</div>
