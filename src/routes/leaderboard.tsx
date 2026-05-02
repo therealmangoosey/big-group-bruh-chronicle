@@ -47,18 +47,18 @@ function Page() {
       </Window>
 
       <Window title={`${tabMeta.label.toLowerCase()}_top25.txt`} variant="cyan">
-        {/* podium */}
+        {/* podium — strict 1, 2, 3 left to right */}
         <div className="grid grid-cols-3 gap-3 mb-5 items-end">
-          {[1, 0, 2].map((idx) => {
+          {[0, 1, 2].map((idx) => {
             const row = data[idx];
             if (!row) return <div key={idx} />;
-            const heights = [120, 160, 100];
-            const medals = ["🥈", "🥇", "🥉"];
+            const heights = [170, 130, 100];
+            const medals = ["🥇", "🥈", "🥉"];
             return (
               <div key={idx} className="text-center">
                 <div className="text-3xl mb-1">{medals[idx]}</div>
                 <Avatar name={row[0]} size={48} />
-                <div className="pixel text-[10px] mt-1 truncate" title={row[0]}>{row[0]}</div>
+                <div className="pixel text-[10px] mt-1 truncate" title={row[0]}>#{idx + 1} · {row[0]}</div>
                 <div className="disp text-2xl">{row[1].toLocaleString()}</div>
                 <div
                   style={{
