@@ -105,20 +105,25 @@ function RootShell({ children }: { children: React.ReactNode }) {
 
 function TopBar() {
   return (
-    <header className="sticky top-0 z-40" style={{ background: "var(--ink)", color: "white" }}>
-      <div className="page py-2 flex items-center justify-between gap-4">
-        <Link to="/" className="pixel text-[10px] sm:text-xs flex items-center gap-2">
-          <span className="rainbow">★ BIG GROUP BRUH</span>
-          <span className="blink hidden sm:inline" style={{ color: "var(--lime)" }}>● LIVE</span>
+    <header className="sticky top-0 z-40" style={{ background: "rgba(10,10,10,.85)", backdropFilter: "blur(12px)", borderBottom: "1px solid var(--border)" }}>
+      <div className="page py-3 flex items-center justify-between gap-4" style={{ animation: "none" }}>
+        <Link to="/" className="flex items-center gap-3">
+          <span className="inline-block w-8 h-8 rounded-full" style={{ background: "linear-gradient(135deg, var(--hot), var(--lime), var(--cyan))" }} />
+          <span className="disp text-lg sm:text-xl">
+            <span className="rainbow">BIG GROUP BRUH</span>
+          </span>
+          <span className="blink hidden sm:inline text-xs" style={{ color: "var(--lime)" }}>● LIVE</span>
         </Link>
-        <Link to="/search" className="y2k-btn" data-variant="cyan" style={{ padding: "2px 10px", fontSize: 11 }}>
-          🔍 search
-        </Link>
+        <div className="flex items-center gap-2">
+          <Link to="/search" className="y2k-btn" data-variant="cyan" style={{ padding: "8px 16px", fontSize: 12 }}>
+            🔍 Search
+          </Link>
+        </div>
       </div>
-      <div className="marquee" style={{ background: "var(--sun)", color: "var(--ink)", borderTop: "2px solid var(--ink)", borderBottom: "2px solid var(--ink)", padding: "4px 0" }}>
-        <div className="marquee-track pixel text-[10px]">
+      <div className="marquee" style={{ background: "linear-gradient(90deg, var(--hot), var(--sun), var(--lime), var(--cyan), var(--grape))", color: "#0a0a0a", padding: "6px 0", fontWeight: 800, fontSize: 11, letterSpacing: "0.1em", textTransform: "uppercase" }}>
+        <div className="marquee-track">
           {Array.from({ length: 2 }).map((_, i) => (
-            <span key={i} className="flex gap-8">
+            <span key={i} className="flex gap-10">
               <span>★ 38,744 MESSAGES</span>
               <span>★ 37 MEMBERS</span>
               <span>★ 803 DELETIONS</span>
@@ -137,19 +142,19 @@ function TopBar() {
 
 function SideNav() {
   return (
-    <nav className="win" style={{ position: "sticky", top: 100 }}>
-      <div className="win-titlebar"><span>★ navigate.exe</span></div>
+    <nav className="win" style={{ position: "sticky", top: 110, maxHeight: "calc(100vh - 130px)", overflowY: "auto" }}>
+      <div className="win-titlebar"><span>Navigate</span></div>
       <div className="win-body p-0">
         <ul className="text-sm">
           {NAV.map((item) => (
-            <li key={item.to} style={{ borderBottom: "1px dotted var(--ink)" }}>
+            <li key={item.to} style={{ borderBottom: "1px solid var(--border)" }}>
               <Link
                 to={item.to}
-                className="block px-3 py-1.5 hover:bg-[var(--sun)]"
-                activeProps={{ style: { background: "var(--hot)", color: "white", fontWeight: 700 } }}
+                className="block px-4 py-2 transition-colors hover:bg-white/5"
+                activeProps={{ style: { background: "linear-gradient(90deg, var(--hot), transparent)", color: "white", fontWeight: 800 } }}
                 activeOptions={{ exact: item.to === "/" }}
               >
-                <span className="pixel text-[9px]">›</span> {item.label}
+                <span className="opacity-60">›</span> {item.label}
               </Link>
             </li>
           ))}
@@ -161,11 +166,11 @@ function SideNav() {
 
 function Footer() {
   return (
-    <footer className="page mt-12 mb-8 text-center pixel text-[9px]" style={{ color: "var(--muted-foreground)" }}>
+    <footer className="page mt-16 mb-10 text-center text-xs" style={{ color: "var(--muted-foreground)" }}>
       <div className="win inline-block">
-        <div className="win-body py-2 px-4">
-          <span>© 2026 The Archive Bureau · best viewed in Internet Explorer 6 · </span>
-          <span className="rainbow">Big Group Bruh forever</span>
+        <div className="win-body py-3 px-6">
+          <span>© 2026 The Archive · made with chaos · </span>
+          <span className="rainbow font-extrabold">Big Group Bruh forever</span>
         </div>
       </div>
     </footer>
@@ -177,7 +182,7 @@ function RootComponent() {
     <EasterEggProvider>
       <TopBar />
       <div className="page grid gap-4" style={{ gridTemplateColumns: "minmax(0,1fr)" }}>
-        <div className="grid gap-4 md:grid-cols-[200px_minmax(0,1fr)] mt-4">
+        <div className="grid gap-4 md:grid-cols-[220px_minmax(0,1fr)] mt-4">
           <aside className="hidden md:block"><SideNav /></aside>
           <main className="min-w-0"><Outlet /></main>
         </div>
