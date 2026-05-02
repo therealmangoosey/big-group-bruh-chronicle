@@ -22,35 +22,52 @@ type EggCtx = {
   active: { id: EggId; payload?: any } | null;
   dismiss: () => void;
   revealCounter: boolean;
+  showOnce: boolean;
+  setShowOnce: (v: boolean) => void;
+  resetEggs: () => void;
 };
 
 const Ctx = createContext<EggCtx | null>(null);
 
 const KEY = "bgb-eggs-v1";
+const ONCE_KEY = "bgb-eggs-once-v1";
 
 export function EasterEggProvider({ children }: { children: ReactNode }) {
   const [found, setFound] = useState<Set<EggId>>(() => new Set());
   const [active, setActive] = useState<{ id: EggId; payload?: any } | null>(null);
+  const [showOnce, setShowOnceState] = useState<boolean>(true);
 
   // hydrate
   useEffect(() => {
     try {
       const raw = localStorage.getItem(KEY);
       if (raw) setFound(new Set(JSON.parse(raw)));
+      const o = localStorage.getItem(ONCE_KEY);
+      if (o !== null) setShowOnceState(o === "1");
     } catch {}
   }, []);
 
   const persist = (s: Set<EggId>) => {
     try { localStorage.setItem(KEY, JSON.stringify([...s])); } catch {}
   };
+  const setShowOnce = useCallback((v: boolean) => {
+    setShowOnceState(v);
+    try { localStorage.setItem(ONCE_KEY, v ? "1" : "0"); } catch {}
+  }, []);
+  const resetEggs = useCallback(() => {
+    setFound(new Set());
+    try { localStorage.removeItem(KEY); } catch {}
+  }, []);
 
   const trigger = useCallback((id: EggId, payload?: any) => {
-    setActive({ id, payload });
     setFound((prev) => {
-      if (prev.has(id)) return prev;
+      const already = prev.has(id);
+      // Only show overlay if first time, OR user wants every trigger to replay
+      if (!already || !showOnce) setActive({ id, payload });
+      if (already) return prev;
       const next = new Set(prev); next.add(id); persist(next); return next;
     });
-  }, []);
+  }, [showOnce]);
 
   const dismiss = useCallback(() => setActive(null), []);
 
