@@ -117,8 +117,9 @@ export function EasterEggProvider({ children }: { children: ReactNode }) {
 
   const value = useMemo<EggCtx>(() => ({
     found, count: found.size, total: EGG_LIST.length, trigger, active, dismiss,
-    revealCounter: found.size > 0,
-  }), [found, active, trigger, dismiss]);
+    revealCounter: true,
+    showOnce, setShowOnce, resetEggs,
+  }), [found, active, trigger, dismiss, showOnce, setShowOnce, resetEggs]);
 
   return (
     <Ctx.Provider value={value}>
