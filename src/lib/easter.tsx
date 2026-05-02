@@ -22,35 +22,52 @@ type EggCtx = {
   active: { id: EggId; payload?: any } | null;
   dismiss: () => void;
   revealCounter: boolean;
+  showOnce: boolean;
+  setShowOnce: (v: boolean) => void;
+  resetEggs: () => void;
 };
 
 const Ctx = createContext<EggCtx | null>(null);
 
 const KEY = "bgb-eggs-v1";
+const ONCE_KEY = "bgb-eggs-once-v1";
 
 export function EasterEggProvider({ children }: { children: ReactNode }) {
   const [found, setFound] = useState<Set<EggId>>(() => new Set());
   const [active, setActive] = useState<{ id: EggId; payload?: any } | null>(null);
+  const [showOnce, setShowOnceState] = useState<boolean>(true);
 
   // hydrate
   useEffect(() => {
     try {
       const raw = localStorage.getItem(KEY);
       if (raw) setFound(new Set(JSON.parse(raw)));
+      const o = localStorage.getItem(ONCE_KEY);
+      if (o !== null) setShowOnceState(o === "1");
     } catch {}
   }, []);
 
   const persist = (s: Set<EggId>) => {
     try { localStorage.setItem(KEY, JSON.stringify([...s])); } catch {}
   };
+  const setShowOnce = useCallback((v: boolean) => {
+    setShowOnceState(v);
+    try { localStorage.setItem(ONCE_KEY, v ? "1" : "0"); } catch {}
+  }, []);
+  const resetEggs = useCallback(() => {
+    setFound(new Set());
+    try { localStorage.removeItem(KEY); } catch {}
+  }, []);
 
   const trigger = useCallback((id: EggId, payload?: any) => {
-    setActive({ id, payload });
     setFound((prev) => {
-      if (prev.has(id)) return prev;
+      const already = prev.has(id);
+      // Only show overlay if first time, OR user wants every trigger to replay
+      if (!already || !showOnce) setActive({ id, payload });
+      if (already) return prev;
       const next = new Set(prev); next.add(id); persist(next); return next;
     });
-  }, []);
+  }, [showOnce]);
 
   const dismiss = useCallback(() => setActive(null), []);
 
@@ -100,14 +117,15 @@ export function EasterEggProvider({ children }: { children: ReactNode }) {
 
   const value = useMemo<EggCtx>(() => ({
     found, count: found.size, total: EGG_LIST.length, trigger, active, dismiss,
-    revealCounter: found.size > 0,
-  }), [found, active, trigger, dismiss]);
+    revealCounter: true,
+    showOnce, setShowOnce, resetEggs,
+  }), [found, active, trigger, dismiss, showOnce, setShowOnce, resetEggs]);
 
   return (
     <Ctx.Provider value={value}>
+      <EggCounter />
       {children}
       <EggOverlay />
-      <EggCounter />
     </Ctx.Provider>
   );
 }
@@ -119,16 +137,63 @@ export function useEggs() {
 }
 
 function EggCounter() {
-  const { revealCounter, count, total } = useEggs();
-  if (!revealCounter) return null;
+  const { count, total, found, showOnce, setShowOnce, resetEggs } = useEggs();
+  const [open, setOpen] = useState(false);
   return (
     <div style={{
-      position: "fixed", bottom: 8, left: 8, zIndex: 80,
-      background: "black", color: "var(--lime)", border: "2px solid var(--lime)",
-      padding: "4px 8px", fontFamily: "var(--font-pixel)", fontSize: 9,
-      boxShadow: "0 0 12px var(--lime)",
+      position: "sticky", top: 0, zIndex: 70,
+      background: "rgba(10,10,10,.92)", backdropFilter: "blur(8px)",
+      borderBottom: "1px solid var(--border)",
+      color: "var(--lime)", fontFamily: "var(--font-body)", fontSize: 12,
     }}>
-      🥚 {count} / {total} {count === total && <a href="/secret-final" style={{color:"#ff0090"}}>· UNLOCKED</a>}
+      <div className="page" style={{ padding: "6px 16px", display: "flex", alignItems: "center", justifyContent: "space-between", gap: 12, flexWrap: "wrap", animation: "none" }}>
+        <button
+          onClick={() => setOpen((v) => !v)}
+          style={{ background: "transparent", color: "var(--lime)", border: "none", fontWeight: 800, letterSpacing: ".05em", cursor: "pointer", display: "flex", alignItems: "center", gap: 8 }}
+          aria-expanded={open}
+        >
+          🥚 Easter Eggs · <span className="tabular-nums">{count} / {total}</span>
+          <span style={{ opacity: .6 }}>{open ? "▲ hide list" : "▼ show list"}</span>
+          {count === total && <a href="/secret-final" style={{ color: "var(--hot)", marginLeft: 8 }}>· UNLOCKED →</a>}
+        </button>
+        <label style={{ display: "flex", alignItems: "center", gap: 6, cursor: "pointer", opacity: .85 }}>
+          <input
+            type="checkbox"
+            checked={showOnce}
+            onChange={(e) => setShowOnce(e.target.checked)}
+            style={{ accentColor: "var(--lime)" }}
+          />
+          <span style={{ color: "white" }}>Only show each secret once</span>
+        </label>
+      </div>
+      {open && (
+        <div className="page" style={{ padding: "0 16px 10px", animation: "none" }}>
+          <ol style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(180px, 1fr))", gap: 6 }}>
+            {EGG_LIST.map((e, i) => {
+              const got = found.has(e.id);
+              return (
+                <li key={e.id} style={{
+                  display: "flex", alignItems: "center", gap: 8,
+                  padding: "6px 10px", borderRadius: 999,
+                  background: got ? "rgba(46,204,113,.15)" : "rgba(255,255,255,.04)",
+                  border: `1px solid ${got ? "var(--lime)" : "var(--border)"}`,
+                  color: got ? "var(--lime)" : "rgba(255,255,255,.7)",
+                  fontSize: 11, fontWeight: 700,
+                }}>
+                  <span>{got ? "✓" : String(i + 1).padStart(2, "0")}</span>
+                  <span style={{ flex: 1, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>{e.name}</span>
+                </li>
+              );
+            })}
+          </ol>
+          <div style={{ display: "flex", justifyContent: "space-between", marginTop: 8, color: "rgba(255,255,255,.6)", fontSize: 11 }}>
+            <span>Hints live on <a href="/easter-eggs" style={{ color: "var(--lime)", textDecoration: "underline" }}>/easter-eggs</a>.</span>
+            <button onClick={() => { if (confirm("Reset all found secrets?")) resetEggs(); }} style={{ background: "transparent", border: "1px solid var(--border)", color: "rgba(255,255,255,.7)", borderRadius: 999, padding: "2px 10px", cursor: "pointer", fontSize: 11 }}>
+              Reset progress
+            </button>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
