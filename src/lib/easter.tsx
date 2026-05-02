@@ -123,9 +123,9 @@ export function EasterEggProvider({ children }: { children: ReactNode }) {
 
   return (
     <Ctx.Provider value={value}>
+      <EggCounter />
       {children}
       <EggOverlay />
-      <EggCounter />
     </Ctx.Provider>
   );
 }
