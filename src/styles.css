@@ -292,7 +292,8 @@ input, textarea, select {
 }
 
 /* Any explicitly white card/blockquote keeps dark text in our dark theme */
-.bg-white { color: #0a0a0a; }
+.bg-white, .bg-white * { color: #0a0a0a !important; }
+.bg-white a { text-decoration: underline; }
 
 /* Generic link readability inside cards */
 a { color: inherit; }
