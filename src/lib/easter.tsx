@@ -363,7 +363,7 @@ function EggOverlay() {
 }
 
 function GoonCountdown() {
-  const [s, setS] = useState(38 * 60);
+  const [s, setS] = useState(38);
   useEffect(() => {
     const t = setInterval(() => setS((x) => Math.max(0, x - 1)), 1000);
     return () => clearInterval(t);
