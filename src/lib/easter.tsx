@@ -91,18 +91,24 @@ export function EasterEggProvider({ children }: { children: ReactNode }) {
     let typed = "";
     const NAMES = ["leon","charlie","ruby","emma","lloyd","coral","josephy","matilda"];
     let lastInput = Date.now();
-    const onKey = (e: KeyboardEvent) => {
+    const handleChars = (chars: string) => {
       const now = Date.now();
       if (now - lastInput > 2500) typed = "";
       lastInput = now;
-      if (e.key.length === 1) typed = (typed + e.key.toLowerCase()).slice(-20);
-      if (typed.includes("goon")) { typed = ""; trigger("goon-timer"); }
-      else if (NAMES.some((n) => typed.includes(n))) {
-        const hit = NAMES.find((n) => typed.includes(n))!;
-        typed = ""; trigger("name-typed", { name: hit });
-      }
+      typed = (typed + chars.toLowerCase()).slice(-30);
+      if (typed.includes("goon")) { typed = ""; trigger("goon-timer"); return; }
+      const hit = NAMES.find((n) => typed.includes(n));
+      if (hit) { typed = ""; trigger("name-typed", { name: hit }); }
+    };
+    const onKey = (e: KeyboardEvent) => { if (e.key.length === 1) handleChars(e.key); };
+    const onInput = (e: Event) => {
+      const t = e.target as HTMLInputElement | null;
+      // Captures Android virtual keyboards which often don't emit keydown.
+      const data = (e as InputEvent).data ?? (t && "value" in t ? t.value.slice(-1) : "");
+      if (typeof data === "string" && data.length) handleChars(data);
     };
     window.addEventListener("keydown", onKey);
+    window.addEventListener("input", onInput, true);
 
     // afk
     let afk = window.setTimeout(() => trigger("afk"), 30_000);
