@@ -2,9 +2,9 @@ import { createContext, useCallback, useContext, useEffect, useMemo, useRef, use
 
 export const EGG_LIST = [
   { id: "leon-letter", name: "The Letter" },
-  { id: "goon-timer", name: "38 Minutes" },
+  { id: "goon-timer", name: "38 Seconds" },
   { id: "vault-glitch", name: "Vault Breach" },
-  { id: "great-sound", name: "Hospital Air" },
+  { id: "logo-tap", name: "Logo Whisperer" },
   { id: "pixel", name: "Pixel of Truth" },
   { id: "afk", name: "Patient Watcher" },
   { id: "name-typed", name: "Speak Their Name" },
@@ -14,17 +14,18 @@ export const EGG_LIST = [
 ] as const;
 export type EggId = typeof EGG_LIST[number]["id"];
 
+// 5-letter redemption codes — give to friends if a hint is too cryptic.
 export const EGG_CODES: Record<EggId, string> = {
-  "leon-letter": "QXMVT",
-  "goon-timer": "ZRPKB",
-  "vault-glitch": "HFNJW",
-  "great-sound": "BLWQC",
-  "pixel": "XGTPM",
-  "afk": "NVKDR",
-  "name-typed": "CJYHB",
-  "scroll-loop": "MWLSP",
-  "rapid-click": "TBRFK",
-  "long-hover": "GPVNX",
+  "leon-letter": "LETRX",
+  "goon-timer": "GOONZ",
+  "vault-glitch": "VAULT",
+  "logo-tap": "LOGOZ",
+  "pixel": "PIXLZ",
+  "afk": "IDLEZ",
+  "name-typed": "NAMEZ",
+  "scroll-loop": "LOOPZ",
+  "rapid-click": "CLIKZ",
+  "long-hover": "STARE",
 };
 
 type EggCtx = {
