@@ -1,5 +1,6 @@
 import { Outlet, Link, createRootRoute, HeadContent, Scripts } from "@tanstack/react-router";
-import { EasterEggProvider } from "@/lib/easter";
+import { useRef } from "react";
+import { EasterEggProvider, useEggs } from "@/lib/easter";
 
 import appCss from "../styles.css?url";
 
@@ -29,6 +30,7 @@ const NAV: Array<{ to: string; label: string }> = [
   { to: "/rivalry", label: "Rivalry" },
   { to: "/storm", label: "Storm Radar" },
   { to: "/confession", label: "Confession Booth" },
+  { to: "/quotes", label: "All Quotes" },
   { to: "/who-said-it", label: "Who Said It?" },
   { to: "/vault", label: "Deleted Vault" },
   { to: "/mood", label: "Mood Timeline" },
@@ -108,10 +110,22 @@ function RootShell({ children }: { children: React.ReactNode }) {
 }
 
 function TopBar() {
+  const { trigger } = useEggs();
+  const taps = useRef<{ count: number; last: number }>({ count: 0, last: 0 });
+  const onLogoTap = () => {
+    const now = Date.now();
+    if (now - taps.current.last > 1500) taps.current.count = 0;
+    taps.current.last = now;
+    taps.current.count += 1;
+    if (taps.current.count >= 5) {
+      taps.current.count = 0;
+      trigger("logo-tap");
+    }
+  };
   return (
     <header className="sticky top-0 z-40" style={{ background: "rgba(10,10,10,.85)", backdropFilter: "blur(12px)", borderBottom: "1px solid var(--border)" }}>
       <div className="page py-3 flex items-center justify-between gap-4" style={{ animation: "none" }}>
-        <Link to="/" className="flex items-center gap-3">
+        <Link to="/" className="flex items-center gap-3" onClick={onLogoTap}>
           <span className="inline-block w-8 h-8 rounded-full" style={{ background: "linear-gradient(135deg, var(--hot), var(--lime), var(--cyan))" }} />
           <span className="disp text-lg sm:text-xl">
             <span className="rainbow">BIG GROUP BRUH</span>

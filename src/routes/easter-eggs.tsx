@@ -12,13 +12,13 @@ const HINTS: Array<{ id: string; title: string; body: string }> = [
   { id: "rapid-click", title: "I.", body: "Some numbers want to be touched. Repeatedly. Quickly. Five times feels right." },
   { id: "goon-timer", title: "II.", body: "A four-letter word, typed anywhere, anytime — and the clock starts. 38 seconds. Don't ask why." },
   { id: "vault-glitch", title: "III.", body: "Patience pays. The vault is sealed, but if you sit still long enough… it forgets you're there." },
-  { id: "great-sound", title: "IV.", body: "She used the word \"great.\" It wasn't. Find it in her saga and give it a click." },
-  { id: "pixel", title: "V.", body: "Welcome.html has a sixth member it doesn't talk about. He hides in plain sight, exactly one pixel wide." },
+  { id: "logo-tap", title: "IV.", body: "The logo at the top of every page. Tap it. Five times. It tap-tap-taps back." },
+  { id: "pixel", title: "V.", body: "The home page has a sixth member it doesn't talk about. He hides in plain sight, exactly one pixel wide." },
   { id: "afk", title: "VI.", body: "Do nothing for half a minute. The site notices. The site is always watching." },
   { id: "name-typed", title: "VII.", body: "Their names are summons. Type Leon, Charlie, Ruby, Emma, Lloyd, Coral, Josephy, or Matilda — anywhere. They will respond." },
   { id: "scroll-loop", title: "VIII.", body: "There is virtue in returning. Reach the bottom. Climb back to the top. Make the round trip." },
-  { id: "long-hover", title: "IX.", body: "Stat tiles get lonely. If you stare at one for long enough, it starts staring back." },
-  { id: "leon-letter", title: "X.", body: "A leaked apology from Leon. Find it where his confession was rapid-clicked into existence." },
+  { id: "long-hover", title: "IX.", body: "Stat tiles get lonely. If you stare at one for long enough, it starts staring back. (On mobile: long-press.)" },
+  { id: "leon-letter", title: "X.", body: "A leaked apology from Leon. Comes packaged with the Click Demon — find one, find both." },
 ];
 
 function EasterEggsPage() {

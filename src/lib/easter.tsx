@@ -2,9 +2,9 @@ import { createContext, useCallback, useContext, useEffect, useMemo, useRef, use
 
 export const EGG_LIST = [
   { id: "leon-letter", name: "The Letter" },
-  { id: "goon-timer", name: "38 Minutes" },
+  { id: "goon-timer", name: "38 Seconds" },
   { id: "vault-glitch", name: "Vault Breach" },
-  { id: "great-sound", name: "Hospital Air" },
+  { id: "logo-tap", name: "Logo Whisperer" },
   { id: "pixel", name: "Pixel of Truth" },
   { id: "afk", name: "Patient Watcher" },
   { id: "name-typed", name: "Speak Their Name" },
@@ -14,17 +14,18 @@ export const EGG_LIST = [
 ] as const;
 export type EggId = typeof EGG_LIST[number]["id"];
 
+// 5-letter redemption codes — give to friends if a hint is too cryptic.
 export const EGG_CODES: Record<EggId, string> = {
-  "leon-letter": "QXMVT",
-  "goon-timer": "ZRPKB",
-  "vault-glitch": "HFNJW",
-  "great-sound": "BLWQC",
-  "pixel": "XGTPM",
-  "afk": "NVKDR",
-  "name-typed": "CJYHB",
-  "scroll-loop": "MWLSP",
-  "rapid-click": "TBRFK",
-  "long-hover": "GPVNX",
+  "leon-letter": "LETRX",
+  "goon-timer": "GOONZ",
+  "vault-glitch": "VAULT",
+  "logo-tap": "LOGOZ",
+  "pixel": "PIXLZ",
+  "afk": "IDLEZ",
+  "name-typed": "NAMEZ",
+  "scroll-loop": "LOOPZ",
+  "rapid-click": "CLIKZ",
+  "long-hover": "STARE",
 };
 
 type EggCtx = {
@@ -90,23 +91,31 @@ export function EasterEggProvider({ children }: { children: ReactNode }) {
     let typed = "";
     const NAMES = ["leon","charlie","ruby","emma","lloyd","coral","josephy","matilda"];
     let lastInput = Date.now();
-    const onKey = (e: KeyboardEvent) => {
+    const handleChars = (chars: string) => {
       const now = Date.now();
       if (now - lastInput > 2500) typed = "";
       lastInput = now;
-      if (e.key.length === 1) typed = (typed + e.key.toLowerCase()).slice(-20);
-      if (typed.includes("goon")) { typed = ""; trigger("goon-timer"); }
-      else if (NAMES.some((n) => typed.includes(n))) {
-        const hit = NAMES.find((n) => typed.includes(n))!;
-        typed = ""; trigger("name-typed", { name: hit });
-      }
+      typed = (typed + chars.toLowerCase()).slice(-30);
+      if (typed.includes("goon")) { typed = ""; trigger("goon-timer"); return; }
+      const hit = NAMES.find((n) => typed.includes(n));
+      if (hit) { typed = ""; trigger("name-typed", { name: hit }); }
+    };
+    const onKey = (e: KeyboardEvent) => { if (e.key.length === 1) handleChars(e.key); };
+    const onInput = (e: Event) => {
+      const t = e.target as HTMLInputElement | null;
+      // Captures Android virtual keyboards which often don't emit keydown.
+      const data = (e as InputEvent).data ?? (t && "value" in t ? t.value.slice(-1) : "");
+      if (typeof data === "string" && data.length) handleChars(data);
     };
     window.addEventListener("keydown", onKey);
+    window.addEventListener("input", onInput, true);
 
     // afk
     let afk = window.setTimeout(() => trigger("afk"), 30_000);
     const reset = () => { window.clearTimeout(afk); afk = window.setTimeout(() => trigger("afk"), 30_000); };
     window.addEventListener("mousemove", reset);
+    window.addEventListener("touchstart", reset, { passive: true });
+    window.addEventListener("pointerdown", reset, { passive: true });
     window.addEventListener("scroll", reset, { passive: true });
     window.addEventListener("keydown", reset);
 
@@ -121,7 +130,10 @@ export function EasterEggProvider({ children }: { children: ReactNode }) {
 
     return () => {
       window.removeEventListener("keydown", onKey);
+      window.removeEventListener("input", onInput, true);
       window.removeEventListener("mousemove", reset);
+      window.removeEventListener("touchstart", reset);
+      window.removeEventListener("pointerdown", reset);
       window.removeEventListener("scroll", reset);
       window.removeEventListener("keydown", reset);
       window.removeEventListener("scroll", onScroll);
@@ -275,10 +287,17 @@ function EggOverlay() {
         </div>
       ),
     },
-    "great-sound": {
-      stamp: "AMBIENT",
-      title: "hospital_room_07.wav",
-      body: <HospitalAmbient />,
+    "logo-tap": {
+      stamp: "WHISPER",
+      title: "logo_whisperer.bin",
+      body: (
+        <div className="text-sm space-y-2">
+          <p>You tapped the logo five times. The logo tapped back.</p>
+          <p className="pixel text-[10px]" style={{ color: "var(--hot)" }}>
+            secret stat: the gradient is made of three colours, but it took 38,744 messages to choose them.
+          </p>
+        </div>
+      ),
     },
     "pixel": {
       stamp: "CLASSIFIED",

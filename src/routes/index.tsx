@@ -195,10 +195,21 @@ function Index() {
 function StatCard({ label, value, grad }: { label: string; value: number; grad: string }) {
   const { trigger } = useEggs();
   const hoverRef = useRef<number | null>(null);
-  const onEnter = () => { hoverRef.current = window.setTimeout(() => trigger("long-hover"), 4000); };
-  const onLeave = () => { if (hoverRef.current) { window.clearTimeout(hoverRef.current); hoverRef.current = null; } };
+  const start = () => {
+    if (hoverRef.current) return;
+    hoverRef.current = window.setTimeout(() => trigger("long-hover"), 4000);
+  };
+  const stop = () => { if (hoverRef.current) { window.clearTimeout(hoverRef.current); hoverRef.current = null; } };
   return (
-    <div className={`wrapped-card ${grad}`} onMouseEnter={onEnter} onMouseLeave={onLeave} style={{ padding: 20 }}>
+    <div
+      className={`wrapped-card ${grad}`}
+      onMouseEnter={start}
+      onMouseLeave={stop}
+      onTouchStart={start}
+      onTouchEnd={stop}
+      onTouchCancel={stop}
+      style={{ padding: 20 }}
+    >
       <div className="label">{label}</div>
       <div className="num mt-2 reveal-num"><CountUp to={value} /></div>
     </div>
