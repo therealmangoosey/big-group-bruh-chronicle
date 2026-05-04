@@ -24,6 +24,7 @@ import { Route as SecretFinalRouteImport } from './routes/secret-final'
 import { Route as SearchRouteImport } from './routes/search'
 import { Route as RivalryRouteImport } from './routes/rivalry'
 import { Route as ReplayRouteImport } from './routes/replay'
+import { Route as QuotesRouteImport } from './routes/quotes'
 import { Route as QuietDaysRouteImport } from './routes/quiet-days'
 import { Route as PatchNotesRouteImport } from './routes/patch-notes'
 import { Route as PairsRouteImport } from './routes/pairs'
@@ -120,6 +121,11 @@ const RivalryRoute = RivalryRouteImport.update({
 const ReplayRoute = ReplayRouteImport.update({
   id: '/replay',
   path: '/replay',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const QuotesRoute = QuotesRouteImport.update({
+  id: '/quotes',
+  path: '/quotes',
   getParentRoute: () => rootRouteImport,
 } as any)
 const QuietDaysRoute = QuietDaysRouteImport.update({
@@ -256,6 +262,7 @@ export interface FileRoutesByFullPath {
   '/pairs': typeof PairsRoute
   '/patch-notes': typeof PatchNotesRoute
   '/quiet-days': typeof QuietDaysRoute
+  '/quotes': typeof QuotesRoute
   '/replay': typeof ReplayRoute
   '/rivalry': typeof RivalryRoute
   '/search': typeof SearchRoute
@@ -295,6 +302,7 @@ export interface FileRoutesByTo {
   '/pairs': typeof PairsRoute
   '/patch-notes': typeof PatchNotesRoute
   '/quiet-days': typeof QuietDaysRoute
+  '/quotes': typeof QuotesRoute
   '/replay': typeof ReplayRoute
   '/rivalry': typeof RivalryRoute
   '/search': typeof SearchRoute
@@ -335,6 +343,7 @@ export interface FileRoutesById {
   '/pairs': typeof PairsRoute
   '/patch-notes': typeof PatchNotesRoute
   '/quiet-days': typeof QuietDaysRoute
+  '/quotes': typeof QuotesRoute
   '/replay': typeof ReplayRoute
   '/rivalry': typeof RivalryRoute
   '/search': typeof SearchRoute
@@ -376,6 +385,7 @@ export interface FileRouteTypes {
     | '/pairs'
     | '/patch-notes'
     | '/quiet-days'
+    | '/quotes'
     | '/replay'
     | '/rivalry'
     | '/search'
@@ -415,6 +425,7 @@ export interface FileRouteTypes {
     | '/pairs'
     | '/patch-notes'
     | '/quiet-days'
+    | '/quotes'
     | '/replay'
     | '/rivalry'
     | '/search'
@@ -454,6 +465,7 @@ export interface FileRouteTypes {
     | '/pairs'
     | '/patch-notes'
     | '/quiet-days'
+    | '/quotes'
     | '/replay'
     | '/rivalry'
     | '/search'
@@ -494,6 +506,7 @@ export interface RootRouteChildren {
   PairsRoute: typeof PairsRoute
   PatchNotesRoute: typeof PatchNotesRoute
   QuietDaysRoute: typeof QuietDaysRoute
+  QuotesRoute: typeof QuotesRoute
   ReplayRoute: typeof ReplayRoute
   RivalryRoute: typeof RivalryRoute
   SearchRoute: typeof SearchRoute
@@ -616,6 +629,13 @@ declare module '@tanstack/react-router' {
       path: '/replay'
       fullPath: '/replay'
       preLoaderRoute: typeof ReplayRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/quotes': {
+      id: '/quotes'
+      path: '/quotes'
+      fullPath: '/quotes'
+      preLoaderRoute: typeof QuotesRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/quiet-days': {
@@ -798,6 +818,7 @@ const rootRouteChildren: RootRouteChildren = {
   PairsRoute: PairsRoute,
   PatchNotesRoute: PatchNotesRoute,
   QuietDaysRoute: QuietDaysRoute,
+  QuotesRoute: QuotesRoute,
   ReplayRoute: ReplayRoute,
   RivalryRoute: RivalryRoute,
   SearchRoute: SearchRoute,

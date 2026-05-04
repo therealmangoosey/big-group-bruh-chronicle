@@ -29,6 +29,7 @@ const NAV: Array<{ to: string; label: string }> = [
   { to: "/rivalry", label: "Rivalry" },
   { to: "/storm", label: "Storm Radar" },
   { to: "/confession", label: "Confession Booth" },
+  { to: "/quotes", label: "All Quotes" },
   { to: "/who-said-it", label: "Who Said It?" },
   { to: "/vault", label: "Deleted Vault" },
   { to: "/mood", label: "Mood Timeline" },
