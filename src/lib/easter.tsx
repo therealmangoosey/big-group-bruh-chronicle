@@ -114,6 +114,8 @@ export function EasterEggProvider({ children }: { children: ReactNode }) {
     let afk = window.setTimeout(() => trigger("afk"), 30_000);
     const reset = () => { window.clearTimeout(afk); afk = window.setTimeout(() => trigger("afk"), 30_000); };
     window.addEventListener("mousemove", reset);
+    window.addEventListener("touchstart", reset, { passive: true });
+    window.addEventListener("pointerdown", reset, { passive: true });
     window.addEventListener("scroll", reset, { passive: true });
     window.addEventListener("keydown", reset);
 
