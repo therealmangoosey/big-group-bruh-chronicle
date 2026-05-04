@@ -276,10 +276,17 @@ function EggOverlay() {
         </div>
       ),
     },
-    "great-sound": {
-      stamp: "AMBIENT",
-      title: "hospital_room_07.wav",
-      body: <HospitalAmbient />,
+    "logo-tap": {
+      stamp: "WHISPER",
+      title: "logo_whisperer.bin",
+      body: (
+        <div className="text-sm space-y-2">
+          <p>You tapped the logo five times. The logo tapped back.</p>
+          <p className="pixel text-[10px]" style={{ color: "var(--hot)" }}>
+            secret stat: the gradient is made of three colours, but it took 38,744 messages to choose them.
+          </p>
+        </div>
+      ),
     },
     "pixel": {
       stamp: "CLASSIFIED",
