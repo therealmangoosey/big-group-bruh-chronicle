@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useState, useEffect } from "react";
 import { Window } from "@/components/Window";
+import { members } from "@/lib/dataset";
 import { CONCERNING_QUOTES } from "@/data/all-quotes";
 
 export const Route = createFileRoute("/confession")({
