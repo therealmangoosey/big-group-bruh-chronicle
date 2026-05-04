@@ -1,5 +1,6 @@
 import { Outlet, Link, createRootRoute, HeadContent, Scripts } from "@tanstack/react-router";
-import { EasterEggProvider } from "@/lib/easter";
+import { useRef } from "react";
+import { EasterEggProvider, useEggs } from "@/lib/easter";
 
 import appCss from "../styles.css?url";
 
