@@ -129,11 +129,18 @@ export function EasterEggProvider({ children }: { children: ReactNode }) {
     };
   }, [trigger]);
 
+  const redeemCode = useCallback((code: string): EggId | null => {
+    const c = code.trim().toUpperCase();
+    const id = (Object.keys(EGG_CODES) as EggId[]).find((k) => EGG_CODES[k] === c);
+    if (id) { trigger(id); return id; }
+    return null;
+  }, [trigger]);
+
   const value = useMemo<EggCtx>(() => ({
     found, count: found.size, total: EGG_LIST.length, trigger, active, dismiss,
     revealCounter: true,
-    showOnce, setShowOnce, resetEggs,
-  }), [found, active, trigger, dismiss, showOnce, setShowOnce, resetEggs]);
+    showOnce, setShowOnce, resetEggs, redeemCode,
+  }), [found, active, trigger, dismiss, showOnce, setShowOnce, resetEggs, redeemCode]);
 
   return (
     <Ctx.Provider value={value}>
