@@ -14,6 +14,19 @@ export const EGG_LIST = [
 ] as const;
 export type EggId = typeof EGG_LIST[number]["id"];
 
+export const EGG_CODES: Record<EggId, string> = {
+  "leon-letter": "QXMVT",
+  "goon-timer": "ZRPKB",
+  "vault-glitch": "HFNJW",
+  "great-sound": "BLWQC",
+  "pixel": "XGTPM",
+  "afk": "NVKDR",
+  "name-typed": "CJYHB",
+  "scroll-loop": "MWLSP",
+  "rapid-click": "TBRFK",
+  "long-hover": "GPVNX",
+};
+
 type EggCtx = {
   found: Set<EggId>;
   count: number;
@@ -25,6 +38,7 @@ type EggCtx = {
   showOnce: boolean;
   setShowOnce: (v: boolean) => void;
   resetEggs: () => void;
+  redeemCode: (code: string) => EggId | null;
 };
 
 const Ctx = createContext<EggCtx | null>(null);
