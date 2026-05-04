@@ -132,6 +132,8 @@ export function EasterEggProvider({ children }: { children: ReactNode }) {
       window.removeEventListener("keydown", onKey);
       window.removeEventListener("input", onInput, true);
       window.removeEventListener("mousemove", reset);
+      window.removeEventListener("touchstart", reset);
+      window.removeEventListener("pointerdown", reset);
       window.removeEventListener("scroll", reset);
       window.removeEventListener("keydown", reset);
       window.removeEventListener("scroll", onScroll);
